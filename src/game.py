@@ -12,7 +12,6 @@ class Game(object):
     is_running: bool = False
     window: Window
     entity_manager: EntityManager
-    player = None
 
     def __init__(self):
         pygame.init()
@@ -21,15 +20,18 @@ class Game(object):
         self.window = Window()
         self.entity_manager = EntityManager()
 
-    def update(self):
+    def loop(self) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.quit()
 
         delta_time = self.window.update(FPS)
-        self.entity_manager.update(delta_time, surface=self.window.screen)
 
-    def quit(self):
+        self.entity_manager.process_input(delta_time)
+        self.entity_manager.update(delta_time)
+        self.entity_manager.render(surface=self.window.screen)
+
+    def quit(self) -> None:
         self.is_running = False
         pygame.quit()
         sys.exit(0)

@@ -1,26 +1,32 @@
-from pygame.sprite import Group, GroupSingle
+from pygame.surface import Surface
 
 from src.entities.bike.bike import Bike
+from src.entities.entity import EntityGroup
 from src.entities.obstacle.obstacle import Obstacle
 
 
 class EntityManager(object):
-    player: GroupSingle
-    obstacles: Group
-    all_entities: Group
+    player: EntityGroup
+    obstacles: EntityGroup
+    all_entities: EntityGroup
 
-    def __init__(self):
+    def __init__(self) -> None:
         player = Bike()
 
-        self.player = GroupSingle(player)
-        self.obstacles = Group()
-        self.all_entities = Group(player)
+        self.player = EntityGroup(player)
+        self.obstacles = EntityGroup()
+        self.all_entities = EntityGroup(player)
 
-    def update(self, delta_time, **kwargs):
-        self.all_entities.draw(kwargs["surface"])
-        self.all_entities.update(delta_time, **kwargs)
+    def process_input(self, delta_time) -> None:
+        self.all_entities.process_input(delta_time)
 
-    def add_obstacle(self):
+    def update(self, delta_time) -> None:
+        self.all_entities.update(delta_time)
+
+    def render(self, surface: Surface) -> None:
+        self.all_entities.render(surface)
+
+    def add_obstacle(self) -> None:
         obstacle = Obstacle()
 
         self.obstacles.add(obstacle)
