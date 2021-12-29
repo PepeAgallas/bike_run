@@ -1,7 +1,7 @@
 from pygame.sprite import Group, GroupSingle
 
-from entities.bike.bike import Bike
-from entities.obstacle.obstacle import Obstacle
+from src.entities.bike.bike import Bike
+from src.entities.obstacle.obstacle import Obstacle
 
 
 class EntityManager(object):

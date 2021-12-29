@@ -2,8 +2,8 @@ import sys
 
 import pygame
 
-from entities.entity_manager import EntityManager
-from window import Window
+from src.entities.entity_manager import EntityManager
+from src.window import Window
 
 FPS = 60
 
