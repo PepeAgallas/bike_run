@@ -1,5 +1,5 @@
 import pygame.display
-from pygame import Surface
+from pygame import Surface, Rect
 from pygame.time import Clock
 
 WIDTH, HEIGHT = 480, 720
@@ -20,3 +20,17 @@ class Window(object):
         self.screen.fill(pygame.Color('black'))
 
         return ticks * 0.001
+
+
+def box(rect: Rect, vertical: bool = True, horizontal: bool = True):
+    if horizontal:
+        if rect.right >= WIDTH:
+            rect.right = WIDTH
+        if rect.left <= 0:
+            rect.left = 0
+
+    if vertical:
+        if rect.bottom >= HEIGHT:
+            rect.bottom = HEIGHT
+        if rect.top <= 0:
+            rect.top = 0

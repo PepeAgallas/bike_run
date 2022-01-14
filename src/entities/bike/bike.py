@@ -2,6 +2,7 @@ import pygame.image
 from pygame.rect import Rect
 from pygame.surface import Surface
 
+from src.window import box
 from src.entities.entity import Entity
 from src.utils.utils import load_file
 
@@ -28,11 +29,12 @@ class Bike(Entity):
     def process_input(self, delta_time) -> None:
         keys = pygame.key.get_pressed()
 
-        movement_x = keys[pygame.K_RIGHT] - keys[pygame.K_LEFT]
-        movement_y = keys[pygame.K_DOWN] - keys[pygame.K_UP]
+        movement_x = keys[pygame.K_d] - keys[pygame.K_a]
+        movement_y = keys[pygame.K_s] - keys[pygame.K_w]
 
         self.rect.x += round(self.speed * movement_x * delta_time)
         self.rect.y += round(self.speed * movement_y * delta_time)
+        box(self.rect)
 
     def update(self, delta_time, **kwargs) -> None:
         pass
