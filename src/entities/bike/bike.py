@@ -2,7 +2,7 @@ import pygame.image
 from pygame.rect import Rect
 from pygame.surface import Surface
 
-from src.window import box
+from src.window import box, WIDTH, HEIGHT
 from src.entities.entity import Entity
 from src.utils.utils import load_file
 
@@ -17,6 +17,7 @@ class Bike(Entity):
         super().__init__()
         self._load_image()
         self.rect = self.image.get_rect()
+        self._reset_position()
         self.life = 3
 
     def _load_image(self):
@@ -44,3 +45,7 @@ class Bike(Entity):
 
     def die(self) -> None:
         self.life = 0
+
+    def _reset_position(self):
+        self.rect.centerx = WIDTH / 2
+        self.rect.bottom = HEIGHT - 10
