@@ -30,7 +30,7 @@ class Game(object):
 
         delta_time = self.window.update(FPS)
 
-        self.road.loop(self.window.screen)
+        self.road.loop(delta_time, self.window.screen)
         self.entity_manager.process_input(delta_time)
         self.entity_manager.update(delta_time)
         self.entity_manager.render(surface=self.window.screen)
