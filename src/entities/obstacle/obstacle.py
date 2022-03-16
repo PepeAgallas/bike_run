@@ -13,7 +13,7 @@ from src.utils.utils import get_file_path
 class Obstacle(Entity):
     rect: Rect
     image: Surface
-    speed: int = 200
+    speed: int = 250
     is_alive: bool = False
 
     def __init__(self, lane: int = None):

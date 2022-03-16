@@ -43,8 +43,12 @@ class Bike(Entity):
     def render(self, delta_time) -> None:
         pass
 
-    def die(self) -> None:
-        self.life = 0
+    def crash(self) -> None:
+        if self.life > 0:
+            self.life -= 1
+
+    def alive(self) -> bool:
+        return self.life > 0
 
     def _reset_position(self):
         self.rect.centerx = WIDTH / 2

@@ -37,6 +37,7 @@ class Game(object):
         self.entity_manager.render()
 
         self.add_obstacle()
+        self.check_player_collision()
 
     def quit(self) -> None:
         self.is_running = False
@@ -48,3 +49,24 @@ class Game(object):
         if last_time - self.last_obstacle_time >= 1000:
             self.last_obstacle_time = last_time
             self.entity_manager.add_obstacle()
+
+    def check_player_collision(self):
+        [player] = self.entity_manager.player
+        obstacles = self.entity_manager.obstacles
+        
+        collition_group = pygame.sprite.spritecollide(
+            player,
+            obstacles,
+            True
+        )
+
+        for collided in collition_group:
+            collided.kill()
+
+        has_collided = len(collition_group) > 0
+        if has_collided and player.alive():
+            player.crash()
+
+        if player.alive() is not True:
+            print("Game over!")
+            self.quit()
