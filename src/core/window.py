@@ -2,6 +2,7 @@ import pygame.display
 from pygame import Surface, Rect
 from pygame.time import Clock
 
+GAME_TITLE = "Bike run!"
 WIDTH, HEIGHT = 480, 720
 CENTER_WIDTH, CENTER_HEIGHT = WIDTH/2, HEIGHT/2
 
@@ -11,6 +12,7 @@ class Window(object):
     clock: Clock
 
     def __init__(self):
+        pygame.display.set_caption(GAME_TITLE)
         self.screen = pygame.display.set_mode((WIDTH, HEIGHT))
         self.clock = Clock()
 
